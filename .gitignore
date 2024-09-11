@@ -3,4 +3,4 @@ bolivian_plates.onnx
 data.yaml
 *.pt
 YOLOv8/
-
+runs/
