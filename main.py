@@ -6,8 +6,9 @@ from matplotlib.path import Path as mplPath
 
 final_project = YOLO("best.pt", task='detect')
 reader = easyocr.Reader(['en'])
-crosswalk = np.array([[800, 700], [1700, 300], [1375, 300], [700, 450]])
+#crosswalk = np.array([[800, 700], [1700, 300], [1375, 300], [700, 450]])
 
+"""
 def is_car_on_crosswalk(car_box, crosswalk_corners):
     car_poly = np.array([[car_box[0], car_box[1]], [car_box[2], car_box[1]], [car_box[2], car_box[3]], [car_box[0], car_box[3]]])
     crosswalk_poly = np.array(crosswalk_corners)
@@ -16,6 +17,7 @@ def is_car_on_crosswalk(car_box, crosswalk_corners):
         if crosswalk_poly_path.contains_point(point):
             return True
     return False
+"""
 
 def extract_rois(results, target_label="Placa"):
     rois = []
@@ -35,6 +37,9 @@ def display_results(frame, results):
         for box in result.boxes:
             if final_project.names[int(box.cls)] == "Auto":
                 car_box = list(map(int, box.xyxy[0]))
+                color = (0, 255, 0)
+                text = "Car"
+                """
                 if is_car_on_crosswalk(car_box, crosswalk):
                     color = (0, 0, 255)
                     text = "Car on Crosswalk"
@@ -42,10 +47,12 @@ def display_results(frame, results):
                 else:
                     color = (0, 255, 0)
                     text = "Car Not on Crosswalk"
+                """
                 x1, y1, x2, y2 = car_box
                 cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
                 cv2.putText(frame, text, (x1, y2 + 30), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2, cv2.LINE_AA)
     return frame, cars_on_crosswalk
+    #return frame
 
 def annotate_plates(frame, plates, coords):
     for roi, coord in zip(plates, coords):
@@ -58,7 +65,7 @@ def annotate_plates(frame, plates, coords):
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
         cv2.putText(frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
-cap = cv2.VideoCapture('traffic_vid.mp4')
+cap = cv2.VideoCapture('test_1.mp4')
 
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -74,7 +81,7 @@ while cap.isOpened():
 
     results = final_project(frame)
     frame, cars_on_crosswalk = display_results(frame, results)
-    cv2.polylines(frame, [crosswalk], isClosed=True, color=(0, 255, 255), thickness=2)
+    #cv2.polylines(frame, [crosswalk], isClosed=True, color=(0, 255, 255), thickness=2)
     plate_rois, plate_coords = extract_rois(results, target_label="Placa")
     annotate_plates(frame, plate_rois, plate_coords)
     out.write(frame)
