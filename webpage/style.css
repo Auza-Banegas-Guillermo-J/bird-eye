@@ -5,6 +5,7 @@
 }
 
 body {
+    background-image: url(resources/Landscape.png);
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
@@ -26,8 +27,9 @@ main {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(225,225,225,1);
+    box-shadow: 0 0px 75px rgba(0, 0, 0, 1);
+    border-radius: 35px;
 }
 
 section {
@@ -80,7 +82,6 @@ button:hover {
 .image-container img {
     max-width: 100%;
     height: auto;
-    border: 1px solid #e0dcdc;
-    border-radius: 4px;
-    padding: 7px;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 35px;
 }
