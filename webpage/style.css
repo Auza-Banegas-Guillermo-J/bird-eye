@@ -130,3 +130,16 @@ button:hover {
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
+
+.close, .close-video {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close-video:hover, .close:focus, .close-video:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

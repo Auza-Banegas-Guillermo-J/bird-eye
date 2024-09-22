@@ -17,7 +17,7 @@
             <button id="view-plates">View Plates</button>
             <button id="add-plate">Add Plate</button>
             <button id="delete-plate">Delete Plate</button>
-            <button id="view-infractions">View Infractions</button>
+            <button id="view-video">Live Video</button>
         </section>
         <section class="image-container">
             <img src="resources/Yolo_Model.png" alt="Plate OCR">
@@ -32,10 +32,20 @@
         </div>
     </div>
 
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-video">&times;</span>
+            <h2>Live Video Feed</h2>
+            <!-- Replace video tag with img tag -->
+            <img id="videoFeed" width="480" height="320" alt="Live video feed">
+        </div>
+    </div>
+
     <footer>
         <h5>Universidad Catolica Boliviana IMT</h5>
         <h5>Guillermo & Sergio</h5>
     </footer>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
