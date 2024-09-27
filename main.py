@@ -3,8 +3,9 @@ import cv2
 from ultralytics import YOLO
 import easyocr
 
-final_project = YOLO("best.pt", task='detect')
+final_project = YOLO("best8.pt", task='detect')
 reader = easyocr.Reader(['en'])
+cap = cv2.VideoCapture('input.MOV')
 
 def extract_rois(results, target_label="Placa"):
     rois = []
@@ -41,7 +42,6 @@ def annotate_plates(frame, plates, coords):
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
         cv2.putText(frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
-cap = cv2.VideoCapture('test_1.mp4')
 
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))

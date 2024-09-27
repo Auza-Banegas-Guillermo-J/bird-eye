@@ -28,7 +28,15 @@ print("Server Ip Address : ", Ip_Dir)
 
 class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
+        self.ip_dir = Ip_Dir
+        self.websocket_port = WEBSOCKET_PORT
         super().__init__(*args, directory="./webpage/", **kwargs)
+
+    def end_headers(self):
+        self.send_header("X-Ip-Dir", self.ip_dir)
+        self.send_header("X-WebSocket-Port", str(self.websocket_port))
+        super().end_headers()
+
     def log_message(self, format, *args):
         pass
 

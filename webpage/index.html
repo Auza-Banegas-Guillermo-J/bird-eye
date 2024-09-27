@@ -6,6 +6,23 @@
     <title>Bird-eye Monitoring</title>
     <link rel="icon" type="image/eye-icon" href="resources/Eye.ico">
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Get IP address and WebSocket port from headers
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch(window.location.href)
+                .then(response => {
+                    const ipDir = response.headers.get("X-Ip-Dir");
+                    const websocketPort = response.headers.get("X-WebSocket-Port");
+                    
+                    // Assign them to global variables
+                    window.Ip_Dir = ipDir;
+                    window.WEBSOCKET_PORT = websocketPort;
+
+                    // Connect to the plate WebSocket
+                    connectPlateSocket();
+                });
+        });
+    </script>
 </head>
 <body>
     <header>
