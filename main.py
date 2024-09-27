@@ -5,7 +5,7 @@ import easyocr
 
 final_project = YOLO("best8.pt", task='detect')
 reader = easyocr.Reader(['en'])
-cap = cv2.VideoCapture('input.MOV')
+cap = cv2.VideoCapture('traffic_vid.mp4')
 
 def extract_rois(results, target_label="Placa"):
     rois = []
