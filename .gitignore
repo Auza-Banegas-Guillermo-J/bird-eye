@@ -1,5 +1,6 @@
 *.mp4
 *.MOV
+*.mov
 bolivian_plates.onnx
 data.yaml
 *.pt
