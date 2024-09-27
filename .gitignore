@@ -1,0 +1,10 @@
+*.mp4
+*.MOV
+*.mov
+input.MOV
+bolivian_plates.onnx
+data.yaml
+*.pt
+YOLOv8/
+runs/
+.ipynb_checkpoints/
