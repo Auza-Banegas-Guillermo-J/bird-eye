@@ -2,6 +2,7 @@
 *.MOV
 *.mov
 input.MOV
+input.mov
 bolivian_plates.onnx
 data.yaml
 *.pt
